@@ -77,6 +77,12 @@ const HolographicCard = ({ project, index }: HolographicCardProps) => {
                 }}
             >
                 <Card
+                    onClick={() => {
+                        const targetUrl = project.liveUrl || project.githubUrl;
+                        if (targetUrl && targetUrl !== '#') {
+                            window.open(targetUrl, '_blank');
+                        }
+                    }}
                     sx={{
                         height: '100%',
                         display: 'flex',
@@ -88,6 +94,8 @@ const HolographicCard = ({ project, index }: HolographicCardProps) => {
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         borderRadius: 4,
                         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)',
+                        cursor: (project.liveUrl || project.githubUrl) && (project.liveUrl !== '#' && project.githubUrl !== '#') ? 'pointer' : 'default',
+                        transition: 'all 0.3s ease',
                     }}
                 >
                     {/* Dynamic Glare/Glow Effect */}

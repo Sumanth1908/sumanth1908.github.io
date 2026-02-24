@@ -201,17 +201,9 @@ function App() {
 
         {/* The Constellation (Projects Section) */}
         <Box id="projects" sx={{ py: { xs: 8, md: 16 }, position: 'relative', zIndex: 2 }}>
-          {/* Fading gradient separator */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: -150, left: 0, right: 0, height: 150,
-              background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))',
-              pointerEvents: 'none'
-            }}
-          />
+          {/* Fading gradient separator removed for full transparency, or kept very subtle */}
 
-          <Container maxWidth="lg" sx={{ position: 'relative', bgcolor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(20px)', borderRadius: 8, p: { xs: 3, md: 8 }, border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 20px 100px rgba(0,0,0,0.5)' }}>
+          <Container maxWidth="lg" sx={{ position: 'relative', p: { xs: 3, md: 8 } }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

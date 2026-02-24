@@ -14,6 +14,7 @@ export const projects: Project[] = [
         title: 'FlowWand Application',
         description: 'A powerful canvas-based application with interactive node handles and dynamic routing. Built with React and Zustand.',
         tags: ['React', 'TypeScript', 'Zustand', 'Canvas'],
+        liveUrl: 'https://flow-wand.iamsquark.com/',
         githubUrl: '#',
     },
     {

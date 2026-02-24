@@ -36,9 +36,16 @@ const Navbar = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
+                        style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
                     >
-                        <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                            SUMANTH
+                        <Box
+                            component="img"
+                            src="/cosmic_logo.png"
+                            alt="Logo"
+                            sx={{ width: 40, height: 40, borderRadius: '50%', boxShadow: '0 0 10px rgba(3,218,198,0.5)' }}
+                        />
+                        <Typography variant="h6" component="div" sx={{ fontWeight: 800, fontFamily: 'monospace', letterSpacing: 1, color: '#fff' }}>
+                            SUMANTH<span style={{ color: '#03dac6' }}>_</span>
                         </Typography>
                     </motion.div>
 
@@ -48,22 +55,15 @@ const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                         >
-                            <Button color="inherit">About</Button>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <Button color="inherit">Projects</Button>
+                            <Button color="inherit" sx={{ fontFamily: 'monospace' }}>About</Button>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                            <Button color="primary" variant="outlined" sx={{ borderRadius: '20px' }}>
-                                Contact
+                            <Button color="primary" variant="outlined" sx={{ borderRadius: '20px', fontFamily: 'monospace', borderColor: 'rgba(187,134,252,0.5)' }}>
+                                System.connect()
                             </Button>
                         </motion.div>
                     </Box>
