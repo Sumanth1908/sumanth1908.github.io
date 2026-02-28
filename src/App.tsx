@@ -82,7 +82,9 @@ function App() {
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 style={{ position: 'absolute', top: -100, right: '10%', opacity: 0.2 }}
               >
-                <Cpu size={120} color="#bb86fc" />
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Cpu size={120} color="#bb86fc" />
+                </Box>
               </motion.div>
 
               <motion.div
@@ -90,7 +92,9 @@ function App() {
                 transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
                 style={{ position: 'absolute', bottom: -50, left: '-5%', opacity: 0.15 }}
               >
-                <Terminal size={150} color="#03dac6" />
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                  <Terminal size={150} color="#03dac6" />
+                </Box>
               </motion.div>
 
               <motion.div
@@ -101,7 +105,7 @@ function App() {
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                   <Code size={30} color="#03dac6" />
-                  <Typography variant="h6" sx={{ fontFamily: 'monospace', color: 'secondary.main', letterSpacing: 2 }}>
+                  <Typography variant="h6" sx={{ fontFamily: 'monospace', color: 'secondary.main', letterSpacing: { xs: 1, md: 2 }, fontSize: { xs: '1rem', md: '1.25rem' } }}>
                     <TypewriterText text="SYSTEM.INITIALIZE();" />
                   </Typography>
                 </Box>
@@ -110,7 +114,7 @@ function App() {
                   variant="h1"
                   gutterBottom
                   sx={{
-                    fontSize: { xs: '3.5rem', sm: '5rem', md: '7rem' },
+                    fontSize: { xs: '3rem', sm: '5rem', md: '7rem' },
                     fontWeight: 900,
                     letterSpacing: '-0.03em',
                     lineHeight: 1.1,
@@ -147,7 +151,7 @@ function App() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 1 }}
                 >
-                  <Typography variant="h4" color="text.secondary" paragraph sx={{ mb: 6, fontWeight: 300, maxWidth: '80%', fontFamily: 'monospace' }}>
+                  <Typography variant="h4" color="text.secondary" paragraph sx={{ mb: 6, fontWeight: 300, maxWidth: { xs: '100%', md: '80%' }, fontFamily: 'monospace', fontSize: { xs: '1.2rem', md: '2.125rem' } }}>
                     <TypewriterText text="> Executing physical simulations and architecting mathematical networks..." delay={1500} />
                   </Typography>
                 </motion.div>
@@ -163,9 +167,9 @@ function App() {
                     onClick={scrollToProjects}
                     endIcon={<ArrowDown size={20} />}
                     sx={{
-                      py: 2, px: 5,
+                      py: 2, px: { xs: 3, md: 5 },
                       fontFamily: 'monospace',
-                      fontSize: '1.1rem',
+                      fontSize: { xs: '0.9rem', md: '1.1rem' },
                       fontWeight: 'bold',
                       background: 'rgba(187,134,252,0.1)',
                       border: '1px solid #bb86fc',
@@ -187,7 +191,7 @@ function App() {
                     sx={{
                       border: '1px solid rgba(255,255,255,0.2)',
                       borderRadius: 2,
-                      width: 60, height: 60,
+                      width: { xs: 48, md: 60 }, height: { xs: 48, md: 60 },
                       '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }
                     }}
                   >
@@ -216,10 +220,12 @@ function App() {
                 sx={{
                   fontFamily: 'monospace',
                   fontWeight: 800,
+                  fontSize: { xs: '2.5rem', sm: '3rem', md: '3.75rem' },
                   position: 'relative',
                   display: 'inline-block',
                   color: '#fff',
-                  textShadow: '0 0 20px rgba(255,255,255,0.3)'
+                  textShadow: '0 0 20px rgba(255,255,255,0.3)',
+                  wordBreak: 'break-word'
                 }}
               >
                 // COMPILED_ASSETS

@@ -55,14 +55,52 @@ const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                         >
-                            <Button color="inherit" sx={{ fontFamily: 'monospace' }}>About</Button>
+                            <Button
+                                color="inherit"
+                                sx={{
+                                    display: { xs: 'none', sm: 'block' },
+                                    fontFamily: 'monospace',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    '&::before': {
+                                        content: '"> "',
+                                        color: '#03dac6',
+                                        opacity: 0,
+                                        transition: 'opacity 0.2s',
+                                        marginRight: '8px',
+                                    },
+                                    '&:hover::before': {
+                                        opacity: 1,
+                                    },
+                                    '&::after': {
+                                        content: '"_"',
+                                        position: 'absolute',
+                                        right: '4px',
+                                        animation: 'blink 1s step-end infinite',
+                                        opacity: 0,
+                                    },
+                                    '&:hover::after': {
+                                        opacity: 1,
+                                    },
+                                    '@keyframes blink': {
+                                        '0%, 100%': { opacity: 1 },
+                                        '50%': { opacity: 0 }
+                                    }
+                                }}
+                            >
+                                whoami
+                            </Button>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                            <Button color="primary" variant="outlined" sx={{ borderRadius: '20px', fontFamily: 'monospace', borderColor: 'rgba(187,134,252,0.5)' }}>
+                            <Button
+                                color="primary"
+                                variant="outlined"
+                                sx={{ borderRadius: '20px', fontFamily: 'monospace', borderColor: 'rgba(187,134,252,0.5)' }}
+                            >
                                 System.connect()
                             </Button>
                         </motion.div>
