@@ -1,12 +1,19 @@
-import { Box, Typography, Container, Button, Grid, IconButton } from '@mui/material';
+import { Box, Typography, Container, Button, Grid } from '@mui/material';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HolographicCard from './components/HolographicCard';
-import CosmicBackground from './components/CosmicBackground';
 import { projects } from './data/projects';
-import { ArrowDown, Code, Terminal, Cpu } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { ArrowDown, Code } from 'lucide-react';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { useBackground } from './contexts/BackgroundContext';
+import BackgroundSwitcher from './components/BackgroundSwitcher';
+import WebGLErrorBoundary from './components/WebGLErrorBoundary';
+
+// Lazy load backgrounds for performance
+const CosmicBackground = lazy(() => import('./components/CosmicBackground'));
+const RetroHackerBackground = lazy(() => import('./components/backgrounds/RetroHackerBackground'));
+const NeonCityBackground = lazy(() => import('./components/backgrounds/NeonCityBackground'));
 
 // Typing effect component
 const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
@@ -29,6 +36,8 @@ const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) =
 }
 
 function App() {
+  const { activeBackground } = useBackground();
+
   const scrollToProjects = () => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
@@ -55,7 +64,15 @@ function App() {
         overflowX: 'hidden'
       }}
     >
-      <CosmicBackground />
+      <WebGLErrorBoundary fallbackBackground={<CosmicBackground />}>
+        <Suspense fallback={<Box sx={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, bgcolor: '#000' }} />}>
+          {activeBackground === 'cosmic' && <CosmicBackground />}
+          {activeBackground === 'retro' && <RetroHackerBackground />}
+          {activeBackground === 'neoncity' && <NeonCityBackground />}
+        </Suspense>
+      </WebGLErrorBoundary>
+      <BackgroundSwitcher />
+
       <Navbar />
 
       <Box component="main" sx={{ flexGrow: 1 }}>
@@ -82,20 +99,9 @@ function App() {
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 style={{ position: 'absolute', top: -100, right: '10%', opacity: 0.2 }}
               >
-                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                  <Cpu size={120} color="#bb86fc" />
-                </Box>
               </motion.div>
 
-              <motion.div
-                animate={{ y: [20, -20, 20], rotate: [0, -10, 0] }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ position: 'absolute', bottom: -50, left: '-5%', opacity: 0.15 }}
-              >
-                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                  <Terminal size={150} color="#03dac6" />
-                </Box>
-              </motion.div>
+
 
               <motion.div
                 initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
@@ -186,17 +192,6 @@ function App() {
                   >
                     EXPLORE_NODES
                   </Button>
-
-                  <IconButton
-                    sx={{
-                      border: '1px solid rgba(255,255,255,0.2)',
-                      borderRadius: 2,
-                      width: { xs: 48, md: 60 }, height: { xs: 48, md: 60 },
-                      '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' }
-                    }}
-                  >
-                    <Cpu size={24} />
-                  </IconButton>
                 </motion.div>
               </motion.div>
             </Box>

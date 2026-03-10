@@ -16,6 +16,7 @@ function ElevationScroll(props: Props) {
     });
 
     return children
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ? React.cloneElement(children as React.ReactElement<any>, {
             elevation: trigger ? 4 : 0,
             sx: {
