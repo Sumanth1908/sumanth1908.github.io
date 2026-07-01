@@ -1,41 +1,24 @@
 import { Box, Typography, Container, Button, Grid } from '@mui/material';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import HolographicCard from './components/HolographicCard';
-import { projects } from './data/projects';
-import { ArrowDown, Code } from 'lucide-react';
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { useBackground } from './contexts/BackgroundContext';
-import BackgroundSwitcher from './components/BackgroundSwitcher';
-import WebGLErrorBoundary from './components/WebGLErrorBoundary';
+import { Link as RouterLink } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import HolographicCard from '../components/HolographicCard';
+import TypewriterText from '../components/TypewriterText';
+import { projects } from '../data/projects';
+import { ArrowDown, ArrowLeft, Code } from 'lucide-react';
+import { lazy, Suspense } from 'react';
+import { useBackground } from '../contexts/BackgroundContext';
+import BackgroundSwitcher from '../components/BackgroundSwitcher';
+import WebGLErrorBoundary from '../components/WebGLErrorBoundary';
 
 // Lazy load backgrounds for performance
-const CosmicBackground = lazy(() => import('./components/CosmicBackground'));
-const RetroHackerBackground = lazy(() => import('./components/backgrounds/RetroHackerBackground'));
-const NeonCityBackground = lazy(() => import('./components/backgrounds/NeonCityBackground'));
+const CosmicBackground = lazy(() => import('../components/CosmicBackground'));
+const RetroHackerBackground = lazy(() => import('../components/backgrounds/RetroHackerBackground'));
+const NeonCityBackground = lazy(() => import('../components/backgrounds/NeonCityBackground'));
 
-// Typing effect component
-const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
-  const [displayText, setDisplayText] = useState('');
-
-  useEffect(() => {
-    let i = 0;
-    const timer = setTimeout(() => {
-      const interval = setInterval(() => {
-        setDisplayText(text.substring(0, i + 1));
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, 50);
-      return () => clearInterval(interval);
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [text, delay]);
-
-  return <span>{displayText}</span>;
-}
-
-function App() {
+// The VFX Lab — the original experimental experience, preserved as a showcase / backup.
+function Vfx() {
   const { activeBackground } = useBackground();
 
   const scrollToProjects = () => {
@@ -92,27 +75,24 @@ function App() {
         >
           <Container maxWidth="lg" sx={{ pointerEvents: 'auto' }}>
             <Box sx={{ position: 'relative' }}>
-
-              {/* Floating decorative tech icons */}
-              <motion.div
-                animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ position: 'absolute', top: -100, right: '10%', opacity: 0.2 }}
-              >
-              </motion.div>
-
-
-
               <motion.div
                 initial={{ opacity: 0, y: 50, filter: 'blur(10px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 1, ease: [0.175, 0.885, 0.32, 1.275] }}
               >
+                <Button
+                  component={RouterLink}
+                  to="/"
+                  startIcon={<ArrowLeft size={18} />}
+                  sx={{ mb: 3, fontFamily: 'monospace', color: 'secondary.main' }}
+                >
+                  cd ../portfolio
+                </Button>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                   <Code size={30} color="#03dac6" />
                   <Typography variant="h6" sx={{ fontFamily: 'monospace', color: 'secondary.main', letterSpacing: { xs: 1, md: 2 }, fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                    <TypewriterText text="SYSTEM.INITIALIZE();" />
+                    <TypewriterText text="VFX.LAB.INITIALIZE();" />
                   </Typography>
                 </Box>
 
@@ -126,12 +106,11 @@ function App() {
                     lineHeight: 1.1,
                     textTransform: 'uppercase',
                     position: 'relative',
-                    // Outline/Hollow text effect for a cooler look
                     color: 'transparent',
                     WebkitTextStroke: '2px rgba(255,255,255,0.8)',
                   }}
                 >
-                  Sumanth
+                  VFX Lab
                   <Box
                     component="span"
                     sx={{
@@ -148,7 +127,7 @@ function App() {
                       }
                     }}
                   >
-                    Sumanth
+                    VFX Lab
                   </Box>
                 </Typography>
 
@@ -158,7 +137,7 @@ function App() {
                   transition={{ duration: 0.8, delay: 1 }}
                 >
                   <Typography variant="h4" color="text.secondary" paragraph sx={{ mb: 6, fontWeight: 300, maxWidth: { xs: '100%', md: '80%' }, fontFamily: 'monospace', fontSize: { xs: '1.2rem', md: '2.125rem' } }}>
-                    <TypewriterText text="> Executing physical simulations and architecting mathematical networks..." delay={1500} />
+                    <TypewriterText text="> A playground of shaders, particles & procedural worlds. Switch the engine ↘" delay={1500} />
                   </Typography>
                 </motion.div>
 
@@ -200,8 +179,6 @@ function App() {
 
         {/* The Constellation (Projects Section) */}
         <Box id="projects" sx={{ py: { xs: 8, md: 16 }, position: 'relative', zIndex: 2 }}>
-          {/* Fading gradient separator removed for full transparency, or kept very subtle */}
-
           <Container maxWidth="lg" sx={{ position: 'relative', p: { xs: 3, md: 8 } }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -246,8 +223,8 @@ function App() {
       </Box>
 
       <Footer />
-    </Box >
+    </Box>
   );
 }
 
-export default App;
+export default Vfx;

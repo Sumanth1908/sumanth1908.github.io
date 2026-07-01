@@ -6,6 +6,9 @@ export interface Project {
     imageUrl?: string;
     githubUrl?: string;
     liveUrl?: string;
+    company?: string;
+    icon?: string;
+    impact?: string;
 }
 
 export const projects: Project[] = [
@@ -16,6 +19,8 @@ export const projects: Project[] = [
         tags: ['React', 'TypeScript', 'Zustand', 'Canvas'],
         liveUrl: 'https://flow-wand.iamsquark.com/',
         githubUrl: '#',
+        icon: 'Layers',
+        impact: 'Enabled dynamic workflow creation',
     },
     {
         id: 'finance-dashboard',
@@ -23,6 +28,8 @@ export const projects: Project[] = [
         description: 'Comprehensive dashboard for portfolio tracking, cross-currency transfers, and advanced data visualization.',
         tags: ['React', 'Redux', 'Financial Data', 'APIs'],
         liveUrl: '#',
+        icon: 'LineChart',
+        impact: 'Improved financial tracking efficiency',
     },
     {
         id: 'ai-assistant',
@@ -30,6 +37,8 @@ export const projects: Project[] = [
         description: 'Backend integration of an AI agent that utilizes existing APIs to query data and provide intelligent insights.',
         tags: ['Node.js', 'AI', 'Backend', 'API Integration'],
         githubUrl: '#',
+        icon: 'Bot',
+        impact: 'Automated intelligent insights',
     },
     {
         id: 'theme-counter',
@@ -37,5 +46,7 @@ export const projects: Project[] = [
         description: 'A robust utility app featuring wave animations, dynamic theme selection, and resilient state management.',
         tags: ['React', 'Framer Motion', 'UI/UX'],
         githubUrl: '#',
+        icon: 'Palette',
+        impact: 'Delivered robust UI utilities',
     }
 ];
