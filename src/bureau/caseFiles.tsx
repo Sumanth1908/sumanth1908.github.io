@@ -1,14 +1,14 @@
 import type { ReactNode } from 'react';
 import { Bullets, Field, Gauge, TechStamps } from './paperParts';
 import {
-  contact,
+  contactInfo,
   experiences,
   projects,
   skills,
   education,
   awards,
   type Experience,
-  type Project,
+  type ProjectEntry,
 } from '../data/resume';
 
 /* ------------------------------------------------------------------ */
@@ -34,14 +34,21 @@ export interface FolderSpec {
 
 const shortCompany = (company: string) => (company === 'Electronic Arts' ? 'EA' : company);
 
+export interface ArchiveLink {
+  key: string;
+  label: string;
+  sub: string;
+  path: string;
+}
+
 export interface DrawerSpec {
   id: string;
   code: string;
   label: string;
   sub: string;
   folders: FolderSpec[];
-  /** 'legacy' drawers navigate to the archived site instead of opening a dossier. */
-  action?: 'legacy';
+  /** Archive drawers navigate to prior editions of the site instead of opening a dossier. */
+  links?: ArchiveLink[];
 }
 
 /* ------------------------------------------------------------------ */
@@ -116,7 +123,7 @@ function experienceFolder(exp: Experience): FolderSpec {
 /* Drawer 02 — OPERATIONS (projects, foldered by employer)              */
 /* ------------------------------------------------------------------ */
 
-function projectPages(p: Project): PageSpec[] {
+function projectPages(p: ProjectEntry): PageSpec[] {
   const contribPages = chunk(p.responsibilities, 2);
   return [
     {
@@ -200,7 +207,7 @@ const aptitudeFolder: FolderSpec = {
       <div className="memo-monogram">SJ</div>
       <div className="memo-title">Aptitude Report</div>
       <div className="memo-lines">
-        <Field k="SUBJECT" v={contact.name} />
+        <Field k="SUBJECT" v={contactInfo.name} />
         <Field k="SERVICE" v="10+ years" />
         <Field k="EXAMINER" v="Bureau HR-7" />
       </div>
@@ -344,6 +351,10 @@ export const drawers: DrawerSpec[] = [
     label: 'Archive',
     sub: 'prior editions',
     folders: [],
-    action: 'legacy',
+    links: [
+      { key: 'console', label: 'Console Edition', sub: 'ops dashboard — click to load', path: '/console' },
+      { key: 'radio', label: 'Radio Edition', sub: 'shortwave set — click to load', path: '/radio' },
+      { key: 'cosmic', label: 'Cosmic Edition', sub: '2025 site — click to load', path: '/legacy' },
+    ],
   },
 ];

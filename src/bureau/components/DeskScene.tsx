@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { contact } from '../../data/resume';
+import { contactInfo } from '../../data/resume';
 import { playClick } from '../sound';
 
 /* ---------------------------------------------------------------- */
@@ -79,7 +79,7 @@ export function BadgeCard() {
           <span className="badge-photo" aria-hidden="true">
             SJ
           </span>
-          <span className="badge-name">{contact.name}</span>
+          <span className="badge-name">{contactInfo.name}</span>
           <span className="badge-role">SOFTWARE ENGINEER III · ELECTRONIC ARTS</span>
           <span className="badge-meta">SERVICE: 10+ YRS &nbsp;·&nbsp; CLEARANCE: FULL-STACK</span>
           <span className="badge-barcode" aria-hidden="true" />

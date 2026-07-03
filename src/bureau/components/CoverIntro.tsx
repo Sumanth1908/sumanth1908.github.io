@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { contact } from '../../data/resume';
+import { contactInfo } from '../../data/resume';
 import { playFolder } from '../sound';
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -48,7 +48,7 @@ export default function CoverIntro({ onOpen }: { onOpen: () => void }) {
         <div className="cover-fields">
           <div className="cover-field">
             <span>SUBJECT</span>
-            <strong>{contact.name.toUpperCase()}</strong>
+            <strong>{contactInfo.name.toUpperCase()}</strong>
           </div>
           <div className="cover-field">
             <span>OCCUPATION</span>

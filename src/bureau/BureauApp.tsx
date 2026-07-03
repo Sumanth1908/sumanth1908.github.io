@@ -79,7 +79,7 @@ export default function BureauApp() {
                 openDrawerId={openDrawerId}
                 onToggleDrawer={(id) => setOpenDrawerId((cur) => (cur === id ? null : id))}
                 onOpenFolder={(_, folder) => setOpenFolder(folder)}
-                onLegacy={() => navigate('/legacy')}
+                onNavigate={(path) => navigate(path)}
               />
             </div>
 
@@ -113,8 +113,12 @@ export default function BureauApp() {
             >
               {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
             </button>
-            <button type="button" className="util-link" onClick={() => navigate('/legacy')}>
-              2025 ARCHIVED EDITION →
+            <button
+              type="button"
+              className="util-link"
+              onClick={() => setOpenDrawerId('archive')}
+            >
+              PRIOR EDITIONS →
             </button>
           </div>
         </motion.div>

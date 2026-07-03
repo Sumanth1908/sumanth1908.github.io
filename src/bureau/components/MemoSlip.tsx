@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion';
-import { contact } from '../../data/resume';
+import { contactInfo } from '../../data/resume';
+
+// '919010234192' → '+91 90102 34192'
+const phoneDisplay = `+${contactInfo.phone.slice(0, 2)} ${contactInfo.phone.slice(2, 7)} ${contactInfo.phone.slice(7)}`;
 
 export default function MemoSlip({ onClose }: { onClose: () => void }) {
   return (
@@ -32,7 +35,7 @@ export default function MemoSlip({ onClose }: { onClose: () => void }) {
 
         <div className="memo-slip-row">
           <span>M</span>
-          <strong>{contact.name}</strong>
+          <strong>{contactInfo.name}</strong>
         </div>
         <div className="memo-slip-row">
           <span>OF</span>
@@ -40,15 +43,15 @@ export default function MemoSlip({ onClose }: { onClose: () => void }) {
         </div>
         <div className="memo-slip-row">
           <span>PHONE</span>
-          <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>
+          <a href={`tel:+${contactInfo.phone}`}>{phoneDisplay}</a>
         </div>
         <div className="memo-slip-row">
           <span>EMAIL</span>
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
         </div>
         <div className="memo-slip-row">
           <span>WIRE</span>
-          <a href={contact.linkedin} target="_blank" rel="noreferrer">
+          <a href={contactInfo.linkedin} target="_blank" rel="noreferrer">
             linkedin.com/in/sumanthjillepally
           </a>
         </div>

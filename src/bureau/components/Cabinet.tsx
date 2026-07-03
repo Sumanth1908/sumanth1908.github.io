@@ -7,28 +7,26 @@ interface CabinetProps {
   openDrawerId: string | null;
   onToggleDrawer: (id: string) => void;
   onOpenFolder: (drawerId: string, folder: FolderSpec) => void;
-  onLegacy: () => void;
+  onNavigate: (path: string) => void;
 }
 
 function FolderTabs({
   drawer,
   onOpenFolder,
-  onLegacy,
+  onNavigate,
 }: {
   drawer: DrawerSpec;
   onOpenFolder: (drawerId: string, folder: FolderSpec) => void;
-  onLegacy: () => void;
+  onNavigate: (path: string) => void;
 }) {
-  const isLegacy = drawer.action === 'legacy';
-  const tabs: { key: string; label: string; sub?: string; onClick: () => void }[] = isLegacy
-    ? [
-        {
-          key: 'legacy',
-          label: 'Cosmic Edition',
-          sub: '2025 site — click to load',
-          onClick: onLegacy,
-        },
-      ]
+  const isArchive = !!drawer.links;
+  const tabs: { key: string; label: string; sub?: string; onClick: () => void }[] = drawer.links
+    ? drawer.links.map((l) => ({
+        key: l.key,
+        label: l.label,
+        sub: l.sub,
+        onClick: () => onNavigate(l.path),
+      }))
     : drawer.folders.map((f) => ({
         key: f.id,
         label: f.tabShort ?? f.tab,
@@ -51,7 +49,7 @@ function FolderTabs({
         <motion.button
           key={t.key}
           type="button"
-          className={`folder-hanger ${isLegacy ? 'folder-hanger--legacy' : ''}`}
+          className={`folder-hanger ${isArchive ? 'folder-hanger--legacy' : ''}`}
           style={{ zIndex: tabs.length - i }}
           initial={{ y: 18, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -75,7 +73,7 @@ export default function Cabinet({
   openDrawerId,
   onToggleDrawer,
   onOpenFolder,
-  onLegacy,
+  onNavigate,
 }: CabinetProps) {
   return (
     <div className="cabinet" role="navigation" aria-label="Case file cabinet">
@@ -85,7 +83,7 @@ export default function Cabinet({
         return (
           <div key={d.id} className={`drawer ${open ? 'drawer--open' : ''}`}>
             <AnimatePresence>{open && (
-              <FolderTabs drawer={d} onOpenFolder={onOpenFolder} onLegacy={onLegacy} />
+              <FolderTabs drawer={d} onOpenFolder={onOpenFolder} onNavigate={onNavigate} />
             )}</AnimatePresence>
 
             <motion.button
