@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bureau of Records — case-file favicon -->
+  <rect width="64" height="64" rx="13" fill="#232820"/>
+  <!-- folder back panel with tab -->
+  <path d="M10 17 h15 l4 6 h25 a3 3 0 0 1 3 3 v24 a3 3 0 0 1 -3 3 H13 a3 3 0 0 1 -3 -3 Z" fill="#c9a75f"/>
+  <!-- typed sheet peeking out -->
+  <rect x="15" y="14" width="33" height="14" rx="2" fill="#f1e9d5"/>
+  <rect x="19" y="18" width="20" height="2" rx="1" fill="#8a7d5f"/>
+  <rect x="19" y="22" width="14" height="2" rx="1" fill="#b3a37c"/>
+  <!-- folder front flap -->
+  <path d="M7 27 h50 a2 2 0 0 1 2 2.2 l-4.2 21.2 a3.4 3.4 0 0 1 -3.3 2.6 H12.5 a3.4 3.4 0 0 1 -3.3 -2.6 L5 29.2 A2 2 0 0 1 7 27 Z" fill="#e0c184"/>
+  <!-- flap highlight -->
+  <path d="M7 27 h50 a2 2 0 0 1 2 2.2 l-.5 2.3 H5.5 L5 29.2 A2 2 0 0 1 7 27 Z" fill="#eccf95"/>
+  <!-- red wax seal -->
+  <circle cx="45.5" cy="43.5" r="8.6" fill="#ad392d"/>
+  <circle cx="45.5" cy="43.5" r="5.9" fill="none" stroke="#e8c9b2" stroke-width="1.7"/>
+  <circle cx="45.5" cy="43.5" r="2" fill="#e8c9b2"/>
+</svg>
